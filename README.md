@@ -17,9 +17,21 @@ You should be able to clone this project and run it right away after a `bundle i
 
 One of the interesting UX choices I faced was whether or not was whether to transition out items that were not currently located in the viewport of the screen.  Also, if someone is scrolling, do you count an image that's only 50% or 30% visible as in the viewport?  Would you start fading out an image that was only 5% visible, especially if it was unlikely the viewer had seen it?  In the end I went with it, but Verge makes that behavior easy to tweak.  For example, with Verge you can say the element has to be completely within the bounds of the top and bottom to be considered.  
 
+Here's a sample image showing 3 on a row, and you can see some of the images are in the middle of fading in or out: 
+
+
 ![alt text][logo]
 
 [logo]: https://github.com/stephenhuey/fadetheme/blob/master/public/3-in-a-row.png "Sample image showing 3 on a row"
+
+
+And here's one showing 2 on a row:  
+
+![alt text][logo]
+
+[logo]: https://github.com/stephenhuey/fadetheme/blob/master/public/2-in-a-row.png "Sample image showing 2 on a row"
+
+
 
 ## Notable Dependencies
 
