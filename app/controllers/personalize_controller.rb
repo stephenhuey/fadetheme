@@ -1,39 +1,37 @@
 class PersonalizeController < ApplicationController
-  #respond_to :js, only: :feed
 
   TITLE_TRUNCATE_LENGTH = 47
 
   def index
-    response = Faraday.get 'https://api.tintup.com/v1/feed/hueydemo?api_token=05511baf4de385e6582942fa38aa3928b3bfadc8&source=instagram'
-    json = JSON.parse response.body
-    more = json["has_next_page"]
-    session[:finished] = !more
-    session[:next_page] = json["next_page"]
-    @title_truncate_length = TITLE_TRUNCATE_LENGTH
-    @items = json["data"]
+    @items = get_tint_feed
   end
 
-  def feed
-    puts "\n\n finished? #{session[:finished]} and next page: #{session[:next_page]}\n\n}"
-    items = nil
-    unless session[:finished]
-      puts "\n\nAccessing feed and next page is #{session[:next_page]}\n\n"
-      response = Faraday.get session[:next_page]
-      json = JSON.parse response.body
-      more = json["has_next_page"]
-      session[:finished] = !more
-      session[:next_page] = json["next_page"]
-      items = json["data"]
-      items.each do |item|
-        item['title'] = (item['title']).truncate(TITLE_TRUNCATE_LENGTH)
-      end
-    end
-    puts "\n\nEnd of feed and items are #{items.inspect}\n\n"
-
-    # respond_with(items)
+  def feed # if we have finished then there are more pages of results to be retrieved from the feed
+    items = session[:finished_feeding] ? nil : get_tint_feed(session[:next_page])
 
     respond_to do |format|
       format.json { render json: items }
     end
+  end
+
+  private
+
+  def get_tint_feed(url = nil)
+    results = url.present? ? TintApi.feed_me(url) : TintApi.feed_me
+    store_session_values(results)
+    truncate_titles(results.data)
+  end
+
+  def store_session_values(results)
+    session[:finished_feeding] = results.finished?
+    session[:next_page] = results.next_page
+  end
+
+  def truncate_titles(items)
+    items.each do |item|
+      item['title'] = (item['title']).truncate(TITLE_TRUNCATE_LENGTH)
+    end
+
+    items
   end
 end
