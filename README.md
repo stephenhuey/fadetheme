@@ -4,7 +4,8 @@
 2. [Notable Dependencies](#notable-dependencies)
 3. [CSS Choices](#css-choices)
 4. [JS Pursuits](#js-pursuits)
-5. [Transitions With CSS & JS](#transitions-with-css-&-js)
+5. [Transitions With CSS & JS](#transitions-with-css-and-js)
+6. [The End](#the-end)
 
 ## Welcome!  
 
@@ -38,13 +39,13 @@ Odd Behavior:  with some responsive layouts utilizing media queries, the portrai
 
 **Why not a modern full-featured framework?** In recent years, I have at times used Angular and [Aurelia](http://aurelia.io/) and I've enjoyed transpilers launching my JavaScript version ahead.  I didn't try to bring in one on this project so I'm not using the latest JS capabilities (I didn't notice what I was doing at one point and even had to downgrade some arrow functions after seeing the error messages).  Even without the latest JS versions' capabilities, JS is farther along and much better supported than it was when we first started depending on jQuery, so that's why I went ahead and tackled this project with jQuery or any JS framework.  The scope felt small enough to use a small collection of functions in a couple of files, but if the scope began to expand I'd seriously consider just bringing in a modern JS framework.  Aurelia has recently done some seriously heavy lifting for me but I rather enjoying writing this without the extra help this time!
 
-**Why Pegasus?** There are plenty of choices of tiny libraries available if the only AJAX you need to do is fetch some data from your own server, and I could've written it in long form without any library but would've just ended up with more boilerplate than what [Pegasus](http://typicode.github.io/pegasus/) gave me.  
+**Why Pegasus?** There are plenty of choices of tiny libraries available if the only AJAX you need to do is fetch some data from your own server, and I could've written it in long form without any library but would've just ended up with more boilerplate than what [Pegasus](http://typicode.github.io/pegasus/) gave me.  **One thing to note** is that my client-side script using Pegasus asking for each of the next page of results from my Rails server which in turn uses Faraday to get the next page from TINT.  So the Pegasus function is calling each page one at a time until the API says there are no more results (or rather, my Rails server tells the client that).  _This could easily be tweaked to load the posts more lazily_.  It's likely some users wouldn't even stay on the page to see all of the posts, so those extra API requests would be wasted if this was widely deployed.  
 
 **Why Verge?**  I remember writing some code like this in 2011 and a few lines would probably do the job well enough but [Verge](https://github.com/ryanve/verge) is _well-researched_ so they probably know something I don't.  :D   And they also have a grab bag of functions and I wasn't sure which one to go with (I hadn't decided on what the requirements should be).  
 
 **Why setInterval?** I'm a fan of the much more lightweight [heartbeats](https://www.npmjs.com/package/heartbeats) but that's more dependable on the server in something like Node.js and hopefully it won't be too long before it performs consistently in browsers.  Besides, I'm only coordinating a couple of different things.  
 
-## Transitions With CSS & JS
+## Transitions With CSS And JS
 
 I didn't see any TINT themes that did something like this and I've always enjoyed soothing displays of elements fading in and out.  You most often see the showing and hiding of HTML elements by setting the `display` property to `none` or something else.  In my case I wanted the element, while invisible, to still take up space on the page, so I almost started out setting the `visibility` attribute but didn't need it since I could just send the `opacity` down to 0 and then back up to 1 after the image & test had been replaced.  The duration is specified in CSS so the UX/product person can play with the feel of it a bit more easily.  JS is just used to kick it off after a suitable element has been selected for removal based on some criteria (must be in the viewport, or if the transition is back to visible then it can be in or outside of the viewport but it must one of the currently invisible items).  
 
@@ -58,6 +59,7 @@ Thanks for a fun project.  Here's the menu again in case you need it down here:
 2. [Notable Dependencies](#notable-dependencies)
 3. [CSS Choices](#css-choices)
 4. [JS Pursuits](#js-pursuits)
-5. [Transitions With CSS & JS](#transitions-with-css-&-js)
+5. [Transitions With CSS & JS](#transitions-with-css-and-js)
+6. [The End](#the-end)
 
 That's all!  
