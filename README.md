@@ -1,9 +1,10 @@
 # README
 
-[Welcome](#welcome)
-[Notable Dependencies](#notable-dependencies)
-[CSS Choices](#css-choices)
-[JS Pursuits](#js-pursuits)
+1. [Welcome](#welcome)
+2. [Notable Dependencies](#notable-dependencies)
+3. [CSS Choices](#css-choices)
+4. [JS Pursuits](#js-pursuits)
+5. [Transitions With CSS & JS](#transitions-with-css-&-js)
 
 ## Welcome!  
 
@@ -13,7 +14,7 @@ You should be able to clone this project and run it right away after a `bundle i
 
 `TINT_API_TOKEN=mylongstring4mykey2dostuff283u8rjfj3j rails s`
 
-One of the interesting UX choices I faced was 
+One of the interesting UX choices I faced was whether or not was whether to transition out items that were not currently located in the viewport of the screen.  Also, if someone is scrolling, do you count an image that's only 50% or 30% visible as in the viewport?  Would you start fading out an image that was only 5% visible, especially if it was unlikely the viewer had seen it?  In the end I went with it, but Verge makes that behavior easy to tweak.  For example, with Verge you can say the element has to be completely within the bounds of the top and bottom to be considered.  
 
 ## Notable Dependencies
 
@@ -47,3 +48,16 @@ Odd Behavior:  with some responsive layouts utilizing media queries, the portrai
 
 I didn't see any TINT themes that did something like this and I've always enjoyed soothing displays of elements fading in and out.  You most often see the showing and hiding of HTML elements by setting the `display` property to `none` or something else.  In my case I wanted the element, while invisible, to still take up space on the page, so I almost started out setting the `visibility` attribute but didn't need it since I could just send the `opacity` down to 0 and then back up to 1 after the image & test had been replaced.  The duration is specified in CSS so the UX/product person can play with the feel of it a bit more easily.  JS is just used to kick it off after a suitable element has been selected for removal based on some criteria (must be in the viewport, or if the transition is back to visible then it can be in or outside of the viewport but it must one of the currently invisible items).  
 
+
+
+## The End 
+
+Thanks for a fun project.  Here's the menu again in case you need it down here:
+
+1. [Welcome](#welcome)
+2. [Notable Dependencies](#notable-dependencies)
+3. [CSS Choices](#css-choices)
+4. [JS Pursuits](#js-pursuits)
+5. [Transitions With CSS & JS](#transitions-with-css-&-js)
+
+That's all!  
