@@ -13,4 +13,5 @@
 //= require rails-ujs
 //= require turbolinks
 //= require pegasus.min.js
+//= require verge.min.js
 //= require_tree .
