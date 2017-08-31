@@ -13,6 +13,12 @@ You should be able to clone this project and run it right away after a `bundle i
 
 ## Notable Dependencies
 
-Ruby 2.4.1
-Rails ~> 5.1.3
+* Ruby 2.4.1
+* Rails ~> 5.1.3
+* Verge 1.9.1
+* Pegasus 0.3.5
+* Thimble 1.1-beta 
+* Faraday 0.13.1 
+
+
 
