@@ -2,7 +2,7 @@ class PersonalizeController < ApplicationController
   #respond_to :js, only: :feed
 
   def index
-    response = Faraday.get 'https://api.tintup.com/v1/feed/hueydemo?api_token=05511baf4de385e6582942fa38aa3928b3bfadc8'
+    response = Faraday.get 'https://api.tintup.com/v1/feed/hueydemo?api_token=05511baf4de385e6582942fa38aa3928b3bfadc8&source=instagram'
     json = JSON.parse response.body
     more = json["has_next_page"]
     session[:finished] = !more
@@ -11,6 +11,7 @@ class PersonalizeController < ApplicationController
   end
 
   def feed
+    puts "\n\n finished? #{session[:finished]} and next page: #{session[:next_page]}\n\n}"
     items = nil
     unless session[:finished]
       puts "\n\nAccessing feed and next page is #{session[:next_page]}\n\n"
