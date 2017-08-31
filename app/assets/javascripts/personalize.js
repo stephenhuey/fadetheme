@@ -35,13 +35,32 @@ var domReady = function(callback) {
 };
 
 var startAnimationCheckInterval = function() {
-  currentAnimationIntervalId = window.setInterval(checkToSeeWhatImageTransitionsAreNeeded, 4500); // check 2 times per second
+  currentAnimationIntervalId = window.setInterval(checkToSeeWhatNeedsToBeRemoved, 5000); // check every 5 seconds
+  currentAnimationIntervalId = window.setInterval(checkToSeeWhatNeedsToBeFilled, 250); // check 4 times per second
 };
+
+var checkToSeeWhatNeedsToBeRemoved = function() {
+  var items = Array.from(document.querySelectorAll('.item'));
+  var elemNeedsToBeRemoved = findAnyFullyLoadedItemCurrentlyInView(items);
+  if (elemNeedsToBeRemoved) {
+    console.log('fading out', elemNeedsToBeRemoved);
+    fadeOutElem(elemNeedsToBeRemoved);
+  }
+};
+
+var checkToSeeWhatNeedsToBeFilled = function() {
+  var items = Array.from(document.querySelectorAll('.item'));
+  var itemNeedsToBePopulated = findAnyBlankItem(items);
+  if (itemNeedsToBePopulated) {
+    console.log('turning on', itemNeedsToBePopulated);
+    fillAnyBlankItem(itemNeedsToBePopulated);
+  }
+};
+
 
 var checkToSeeWhatImageTransitionsAreNeeded = function() {
 
   var items = Array.from(document.querySelectorAll('.item'));
-  //console.log('items', items);
   var itemNeedsToBePopulated = findAnyBlankItem(items);
   var elemNeedsToBeRemoved = findAnyFullyLoadedItemCurrentlyInView(items);
   if (elemNeedsToBeRemoved) {
@@ -110,6 +129,13 @@ var beginAnimating = function() {
 };
 
 var fillAnyBlankItem = function(elem) {
+  var nextOne = getNextFeedItem();
+  var children = Array.from(elem.children);
+  var img = children[0];
+  var paragraph = children[1];
+  img.src = nextOne['original_image'];
+  img.alt = nextOne['title'];
+  paragraph.innerHTML = nextOne['title']
   fadeInElem(elem);
 };
 
