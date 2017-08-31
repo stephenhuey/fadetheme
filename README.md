@@ -1,24 +1,18 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[Dependencies](#notable-dependencies)
 
-Things you may want to cover:
+## Welcome!  
 
-* Ruby version
+**_fadetheme_** is a TINT theme which displays posts from its feed and eventually replaces each one with a straightforward fade effect developed in vanilla JavaScript.  The initial view is loaded with the first API query page of results, and the remaining pages of results are fetched asynchronously while the view starts replacing the image and caption pairs with new ones that were fetched after launch.  The layout is very flexible and adjusts the number of posts per row according to your screen size.  
 
-* System dependencies
+You should be able to clone this project and run it right away after a `bundle install`.  Even though it's set up to use Postgresql, you won't need the database at this time, so as long as you can install the `pg` gem on your machine you should be good to go.  There's one more catch: it will complain if you try to load Rails without passing your api_token as an environement variable like so: 
 
-* Configuration
+`TINT_API_TOKEN=mylongstring4mykey2dostuff283u8rjfj3j rails s`
 
-* Database creation
 
-* Database initialization
+## Notable Dependencies
 
-* How to run the test suite
+Ruby 2.4.1
+Rails ~> 5.1.3
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
