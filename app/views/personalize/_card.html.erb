@@ -1,0 +1,10 @@
+<div class="card">
+  <div class="card-image">
+    <img src="<%= item['original_image'] %>" alt="<%= item['title'] %>" />
+  </div>
+  <div class="card-content">
+    <p style="font-size: larger">
+      <%= truncate(item['title'], :length => 48)  %>
+    </p>
+  </div>
+</div>
