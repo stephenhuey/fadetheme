@@ -1,6 +1,6 @@
 class PersonalizeController < ApplicationController
 
-  TITLE_TRUNCATE_LENGTH = 47
+  TITLE_TRUNCATE_LENGTH = 44
 
   # initial page load of personalized theme
   def index
