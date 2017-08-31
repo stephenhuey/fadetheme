@@ -1,8 +1,7 @@
-console.log('have this file');
+
+var currentAnimationIntervalId;
 
 var doneFeeding = false;
-var currentAnimationIntervalId;
-//var currentTimeoutId;
 var queue = [];
 var doubleCheckSet = new Set();
 
@@ -14,18 +13,24 @@ var loadNextFeedPage = function() {
       // do something useful like
       console.log('xhr is', xhr);
       console.log('data is', data);
-      //clearTimeout(currentTimeoutId);
-      //currentTimeoutId = setTimeout(loadNextFeedPage, 100);
 
       if (data == null) {
         doneFeeding = true;
+
+        console.log('total', queue.length);
+        console.log('double check', doubleCheckSet.size);  // great, both ended up with a count of 433 one time I checked it!
+
       } else {
+        queue = queue.concat(data);
+        var urls = data.map(function(obj) {
+          return obj['url'];
+        });
+        doubleCheckSet = new Set( urls.concat(Array.from(doubleCheckSet)) );
         loadNextFeedPage();
       }
     },
     function(data, xhr) { // error handler
       console.error(data, xhr.status);
-      //clearTimeout(currentTimeoutId);
       doneFeeding = true;
     }
   );
