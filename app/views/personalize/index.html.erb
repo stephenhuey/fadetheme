@@ -1,10 +1,6 @@
-<% @items.in_groups_of(3, false).each do |group| %>
-    <div class="row align-center">
-      <% group.each do |item| %>
-          <div class="cell">
-            <%= render "card", item: item %>
-          </div>
-      <% end %>
-    </div>
-<% end %>
+<div class="results">
+  <% @items.each do |item| %>
+    <%= render "item", :item => item %>
+  <% end %>
+</div>
 
