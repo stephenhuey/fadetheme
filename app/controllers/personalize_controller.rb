@@ -30,7 +30,7 @@ class PersonalizeController < ApplicationController
     session[:next_page] = results.next_page
   end
 
-  def truncate_titles(items)
+  def truncate_titles(items) # could be handled instead by a decorator
     items.each do |item|
       item['title'] = (item['title']).truncate(TITLE_TRUNCATE_LENGTH)
     end

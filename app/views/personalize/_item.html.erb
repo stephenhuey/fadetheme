@@ -1,4 +1,4 @@
-<div class="item">
+<div class="item" data-url="<%= item['url'] %>">
   <img src="<%= item['original_image'] %>" alt="<%= item['title'] %>" />
   <p>
     <%= truncate(item['title'], :length => PersonalizeController::TITLE_TRUNCATE_LENGTH)  %>

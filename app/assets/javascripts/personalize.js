@@ -69,9 +69,18 @@ var fillAnyBlankItem = function(elem) {
     var paragraph = children[1];
     img.src = nextOne['original_image'];
     img.alt = nextOne['title'];
-    paragraph.innerHTML = nextOne['title']
+    paragraph.innerHTML = nextOne['title'];
+    elem.dataset.url = nextOne['url'];
+    addClickHandlerToItem(elem);
     fadeInElem(elem);
   }
+};
+
+var addClickHandlersToAllItems = function() {
+  var allItems = Array.from(document.querySelectorAll(ITEM_CLASS));
+  allItems.forEach(function(item) {
+    addClickHandlerToItem(item);
+  });
 };
 
 var getNextFeedItem = function() {
@@ -85,4 +94,5 @@ var getNextFeedItem = function() {
                   Enjoy...
 */
 loadNextFeedPage(); // can begin immediately, and will recursively call itself till it's done
+domReady(addClickHandlersToAllItems);
 domReady(startAnimationCheckInterval);

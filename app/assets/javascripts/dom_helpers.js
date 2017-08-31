@@ -60,6 +60,15 @@ var filterByOpacity = function(elements, decimalNumber) {
   });
 };
 
+var addClickHandlerToItem = function(item) {
+  item.addEventListener('click', function(event) {
+    var url = event.target.dataset.url;
+    if (!url) {
+      url = event.target.parentNode.dataset.url;
+    }
+    window.open(url, '_blank');
+  });
+}
 
 var fadeInElem = function(elem) {
   // uses CSS transition - check out the stylesheet!
