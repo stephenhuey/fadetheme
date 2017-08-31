@@ -2,11 +2,14 @@ class PersonalizeController < ApplicationController
 
   TITLE_TRUNCATE_LENGTH = 47
 
+  # initial page load of personalized theme
   def index
     @items = get_tint_feed
   end
 
-  def feed # if we have finished then there are more pages of results to be retrieved from the feed
+  # this is called via AJAX for additional pages of results beyond the first one
+  def feed
+    # if we have finished then there are more pages of results to be retrieved from the feed
     items = session[:finished_feeding] ? nil : get_tint_feed(session[:next_page])
 
     respond_to do |format|
