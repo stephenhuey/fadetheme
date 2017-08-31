@@ -20,16 +20,16 @@ One of the interesting UX choices I faced was whether or not was whether to tran
 Here's a sample image showing 3 on a row, and you can see some of the images are in the middle of fading in or out: 
 
 
-![alt text][logo]
+![alt text3][img3]
 
-[logo]: https://github.com/stephenhuey/fadetheme/blob/master/public/3-in-a-row.png "Sample image showing 3 on a row"
+[img3]: https://github.com/stephenhuey/fadetheme/blob/master/public/3-in-a-row.png "Sample image showing 3 on a row"
 
 
 And here's one showing 2 on a row:  
 
-![alt text][logo]
+![alt text2][img2]
 
-[logo]: https://github.com/stephenhuey/fadetheme/blob/master/public/2-in-a-row.png "Sample image showing 2 on a row"
+[img2]: https://github.com/stephenhuey/fadetheme/blob/master/public/2-in-a-row.png "Sample image showing 2 on a row"
 
 
 
